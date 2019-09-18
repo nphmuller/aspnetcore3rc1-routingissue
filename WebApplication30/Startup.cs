@@ -17,15 +17,16 @@ namespace WebApplication30
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseEndpoints(routes =>
             {
-                routes.MapRoute("test_route", "test/hi",
+                routes.MapControllerRoute("test_route", "test/hi",
                     new
                     {
                         Controller = nameof(CustomEndpoints),
@@ -36,3 +37,4 @@ namespace WebApplication30
         }
     }
 }
+    
